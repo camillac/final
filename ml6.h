@@ -14,6 +14,7 @@ Creates the point structure in order to represent a pixel as a color triple
 #define YRES 500
 #define MAX_COLOR 255
 #define DEFAULT_COLOR 0
+#define MAX_LIGHTS 7
 
 /*
   Every point has an individual int for

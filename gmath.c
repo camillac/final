@@ -22,18 +22,24 @@
 
 
 //lighting functions
-color get_lighting( double *normal, double *view, color alight, double light[2][3], struct constants *reflect) {
+color get_lighting( double *normal, double *view, color alight, double lights[MAX_LIGHTS][2][3], int numLights, struct constants *reflect) {
 
   color a, d, s, i;
   normalize(normal);
 
   a = calculate_ambient( alight, reflect );
-  d = calculate_diffuse( light, reflect, normal );
-  s = calculate_specular( light, reflect, view, normal );
+  i.red = a.red;
+  i.green = a.green;
+  i.blue = a.blue;
 
-  i.red = a.red + d.red + s.red;
-  i.green = a.green + d.green + s.green;
-  i.blue = a.blue + d.blue + s.blue;
+  for (int n = 0; n < numLights; n++){
+    d = calculate_diffuse( lights[n], reflect, normal);
+    s = calculate_specular( lights[n], reflect, view, normal );
+
+    i.red += d.red + s.red;
+    i.green += d.green + s.green;
+    i.blue += d.blue + s.blue;
+  }
 
   limit_color(&i);
   return i;
