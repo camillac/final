@@ -20,6 +20,7 @@ struct command
   {
     struct {
       SYMTAB *p;
+      SYMTAB *bean;
       double c[4];
     } light;
     struct {

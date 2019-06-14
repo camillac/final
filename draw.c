@@ -178,8 +178,8 @@ void add_polygon( struct matrix *polygons,
   lines connecting each points to create bounding triangles
   ====================*/
 void draw_polygons( struct matrix *polygons, screen s, zbuffer zb,
-                    double *view, double lights[MAX_LIGHTS][2][3], int numLights, color ambient,
-                    struct constants *reflect) {
+                    double *view, double lights[MAX_LIGHTS][2][3], int num_lights,
+                    color ambient, struct constants *reflect) {
   if ( polygons->lastcol < 3 ) {
     printf("Need at least 3 points to draw a polygon!\n");
     return;
@@ -195,7 +195,7 @@ void draw_polygons( struct matrix *polygons, screen s, zbuffer zb,
     if ( normal[2] > 0 ) {
 
       // get color value only if front facing
-      color i = get_lighting(normal, view, ambient, reflect, lights, numLights);
+      color i = get_lighting(normal, view, ambient, lights, num_lights, reflect);
       scanline_convert(polygons, point, s, zb, i);
 
       /* draw_line( polygons->m[0][point], */
@@ -421,7 +421,7 @@ struct matrix * generate_sphere(double cx, double cy, double cz,
 
   should call generate_torus to create the necessary points
   ====================*/
-void add_torus( struct matrix * edges, 
+void add_torus( struct matrix * edges,
                 double cx, double cy, double cz,
                 double r1, double r2, int step ) {
 

@@ -546,6 +546,27 @@ SAVE STRING
   lastop++;
 }|
 
+LIGHT STRING DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE STRING
+{
+  lineno++;
+  l = (struct light *)malloc(sizeof(struct light));
+  l->l[0]= $3;
+  l->l[1]= $4;
+  l->l[2]= $5;
+  l->l[3]= 0;
+  l->c[0]= $6;
+  l->c[1]= $7;
+  l->c[2]= $8;
+  op[lastop].opcode=LIGHT;
+  op[lastop].op.light.c[0] = $6;
+  op[lastop].op.light.c[1] = $7;
+  op[lastop].op.light.c[2] = $8;
+  op[lastop].op.light.c[3] = 0;
+  op[lastop].op.light.p = add_symbol($2,SYM_LIGHT,l);
+  op[lastop].op.light.bean = add_symbol($9,SYM_VALUE,0);
+  lastop++;
+}|
+
 LIGHT STRING DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE
 {
   lineno++;
@@ -563,6 +584,7 @@ LIGHT STRING DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE
   op[lastop].op.light.c[2] = $8;
   op[lastop].op.light.c[3] = 0;
   op[lastop].op.light.p = add_symbol($2,SYM_LIGHT,l);
+  op[lastop].op.light.bean = NULL;
   lastop++;
 }|
 

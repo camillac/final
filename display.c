@@ -1,5 +1,5 @@
 /*====================== display.c ========================
-Contains functions for basic manipulation of a screen 
+Contains functions for basic manipulation of a screen
 represented as a 2 dimensional array of colors.
 
 A color is an ordered triple of ints, with each value standing
