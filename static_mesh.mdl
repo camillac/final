@@ -4,5 +4,5 @@ constants korby_black 0 0 0 0 0 0 1 0 0
 push
 move 250 100 0
 scale 60 60 60
-mesh korby_pink :teapot.obj
+mesh korby_pink :legKirby.obj
 save korby.png
